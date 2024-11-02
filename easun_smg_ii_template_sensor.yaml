@@ -1,5 +1,5 @@
-- name: smgii_working_mode_text
-  unique_id: smgii_1_smgii_working_mode_text
+- name: Operating Mode Text
+  unique_id: smgii1_operating_mode_text
   state: >
     {% set modes = {
       '0': 'Power On Mode',
@@ -10,14 +10,14 @@
       '5': 'Charging mode',
       '6': 'Fault mode'}
     %}
-    {% if states('sensor.smgii_working_mode') in modes.keys() %}
-      {{ modes.get(states('sensor.smgii_working_mode')) }}
+    {% if states('sensor.operating_mode') in modes.keys() %}
+      {{ modes.get(states('sensor.operating_mode')) }}
     {% else %}
-      {{ states('sensor.smgii_working_mode') }}
+      {{ states('sensor.operating_mode') }}
     {% endif %}
 
-- name: smgii_fault_code_text
-  unique_id: smgii_1_fault_code_text
+- name: Fault Code Text
+  unique_id: smgii1_fault_code_text
   state: >
     {% set codes = {
       1 : 'Over temperature of inverter module',
@@ -48,9 +48,9 @@
       26: 'The battery type is incompatible',
       27: 'Parallel versions are incompatible'}
     %}
-    {% set code = states('sensor.smgii_fault_code')|int(-1) %}
+    {% set code = states('sensor.fault_code')|int(-1) %}
     {% if code == -1 %}
-      {{ states('sensor.smgii_fault_code') }}
+      {{ states('sensor.fault_code') }}
     {% elif code == 0 %}
       {{ 'OK' }}
     {% else %}
@@ -61,8 +61,8 @@
       {% endfor %}
     {% endif %}
 
-- name: smgii_obtain_warning_code_text
-  unique_id: smgii_1_obtain_warning_code_text
+- name: Warning Code Text
+  unique_id: smgii1_warning_code_text
   state: >
     {% set codes = {
       1 : 'bit 1 Reserve',
@@ -85,10 +85,10 @@
       18: 'Output mode of Single and Parallel systems is inconsistent',
       19: 'Battery voltage difference of parallel system is too large'}
     %}
-    {% set code = states('sensor.smgii_obtain_warning_code')|int(-1) %}
+    {% set code = states('sensor.warning_code')|int(-1) %}
     {% set ns = namespace(out='') %}
     {% if code == -1 %}
-      {{ states('sensor.smgii_obtain_warning_code') }}
+      {{ states('sensor.warning_code') }}
     {% elif code == 0 %}
       {{ 'OK' }}
     {% else %}
@@ -101,4 +101,33 @@
         {% endif %}
       {% endfor %}
       {{ns.out}}
+    {% endif %}
+
+- name: Output Priority
+  unique_id: smgii1_output_priority
+  state: >
+    {% set modes = {
+      '1': 'SUB',
+      '2': 'SBU',
+      '3': 'SUF'}
+    %}
+    {% if states('sensor.output_priority_code') in modes.keys() %}
+      {{ modes.get(states('sensor.output_priority_code')) }}
+    {% else %}
+      {{ states('sensor.output_priority_code') }}
+    {% endif %}
+
+- name: Charger Source Priority
+  unique_id: smgii1_charger_source_priority
+  state: >
+    {% set modes = {
+      '1': 'SOF',
+      '2': 'SNU',
+      '3': 'OSO',
+      '4': 'SOR'}
+    %}
+    {% if states('sensor.charger_source_priority_code') in modes.keys() %}
+      {{ modes.get(states('sensor.charger_source_priority_code')) }}
+    {% else %}
+      {{ states('sensor.charger_source_priority_code') }}
     {% endif %}
