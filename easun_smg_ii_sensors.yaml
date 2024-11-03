@@ -1,5 +1,4 @@
 # Missing:
-# PV Temperature
 # Secondary Output Priority (+time)
 # Secondsry Charger priority (+time)
 # Battery Type
@@ -21,7 +20,7 @@
   input_type: holding
   unique_id: smgii1_warning_code
 
-- name: smgii Serial Number
+- name: Serial Number
   slave: 1
   address: 186
   data_type: string
@@ -187,7 +186,6 @@
   input_type: holding
   unique_id: smgii1_total_pv_charging_current
 
-  #TODO: check this
 - name: PV Temperature
   unit_of_measurement: °C
   slave: 1
@@ -327,7 +325,6 @@
   input_type: holding
   unique_id: smgii1_daily_pv_energy_generation
 
-  #TODO: verify
 - name: Total PV Energy Generation
   unit_of_measurement: Wh
   slave: 1
@@ -341,7 +338,6 @@
 
   ###### Read/Write ######
 
-  #TODO: verify
 - name: Output Priority Code
   slave: 1
   address: 601
@@ -515,12 +511,12 @@
 
   # Input mode: GNT
 
-- name: smgii Buzzer Mode
+- name: Buzzer Mode Code
   slave: 1
-  address: 303
+  address: 678
   data_type: uint16
   input_type: holding
-  unique_id: smgii1_Buzzer_Mode
+  unique_id: smgii1_buzzer_mode_code
   #0: Silent
   #1: Beep on input source changes, warnings and faults
   #2: Beep on warnings and faults
@@ -536,19 +532,19 @@
   #  #1: local-only
   #  #2: remote-only
 
-- name: smgii Exit Fault Mode
+- name: Exit Fault State
   slave: 1
   address: 426
   data_type: uint16
   input_type: holding
-  unique_id: smgii1_Exit_Fault_Mode
-  #1: Exit the fault state(only when the inverter enters the fault mode , it could be available)
+  unique_id: smgii1_exit_fault_state
+  #1: Exit the fault state(only when the inverter enters the fault mode, it could be available)
 
-- name: smgii Rated Power
+- name: Rated Power
   unit_of_measurement: W
   slave: 1
   address: 691
   data_type: uint16
   device_class: power
   input_type: holding
-  unique_id: smgii1_Rated_Power
+  unique_id: smgii1_rated_power

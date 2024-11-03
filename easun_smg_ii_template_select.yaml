@@ -1,4 +1,3 @@
-#TODO: verify
 - name: Output Priority
   unique_id: smgii1_output_priority_select
   options: "{{ ['SUB', 'SBU', 'SUF'] }}"
@@ -30,3 +29,19 @@
         unit: 1
         hub: easun_smg_ii
         value: "{{ [this.attributes.options.index(option)+1] }}"
+
+- name: Buzzer Mode
+  unique_id: smgii1_buzzer_mode_select
+  options: "{{ ['Silent', 'Faults,Warnings,Source Chg', 'Faults,Warnings', 'Faults'] }}"
+  state: >
+    {% if (this.attributes.options|list|count > 0) %}
+      {{ this.attributes.options[int(states('sensor.buzzer_mode_code'))] }}
+    {% endif %}
+  availability: "{{ not states('sensor.buzzer_mode_code') in ['unavailable', 'unknown', 'none'] }}"
+  select_option:
+    - service: modbus.write_register
+      data:
+        address: 678
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [this.attributes.options.index(option)] }}"

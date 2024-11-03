@@ -131,3 +131,18 @@
     {% else %}
       {{ states('sensor.charger_source_priority_code') }}
     {% endif %}
+
+- name: Buzzer Mode
+  unique_id: smgii1_buzzer_mode
+  state: >
+    {% set modes = {
+      '0': 'Silent',
+      '1': 'Faults,Warnings,Source Chg',
+      '2': 'Faults,Warnings',
+      '3': 'Faults'}
+    %}
+    {% if states('sensor.buzzer_mode_code') in modes.keys() %}
+      {{ modes.get(states('sensor.buzzer_mode_code')) }}
+    {% else %}
+      {{ states('sensor.buzzer_mode_code') }}
+    {% endif %}

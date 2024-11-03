@@ -1,70 +1,79 @@
-- name: smgii LCD backlight
+- name: Exit Fault State
+  unique_id: smgii1_exit_fault_state_switch
+  slave: 1
+  address: 426
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+
+- name: LCD backlight
   unique_id: smgii1_lcd_backlight
   slave: 1
-  address: 305
+  address: 679
   write_type: holdings
   command_on: 1
   command_off: 0
   verify:
 
-- name: smgii LCD automatically returns to the homepage
-  unique_id: smgii1_lcd_automatically_returns_to_the_homepage
+- name: LCD Return to Homepage
+  unique_id: smgii1_lcd_return_to_homepage
   slave: 1
-  address: 306
+  address: 680
   write_type: holdings
   command_on: 1
   command_off: 0
   verify:
 
-- name: smgii Energy-saving mode
+- name: Energy-saving mode
   unique_id: smgii1_energy_saving_mode
   slave: 1
-  address: 307
+  address: 681
   write_type: holdings
   command_on: 1
   command_off: 0
   verify:
 
-- name: smgii Overload automatic restart
+- name: Overload Automatic Restart
   unique_id: smgii1_overload_automatic_restart
   slave: 1
-  address: 308
+  address: 682
   write_type: holdings
   command_on: 1
   command_off: 0
   verify:
 
-- name: smgii Over temperature automatic restart
+- name: Over Temperature Automatic Restart
   unique_id: smgii1_over_temperature_automatic_restart
   slave: 1
-  address: 309
+  address: 683
   write_type: holdings
   command_on: 1
   command_off: 0
   verify:
 
-- name: smgii Overload transfer to bypass enabled
-  unique_id: smgii1_Overload_transfer_to_bypass_enabled
+- name: Overload Transfer to Bypass
+  unique_id: smgii1_overload_transfer_to_bypass
   slave: 1
-  address: 310
+  address: 684
   write_type: holdings
   command_on: 1
   command_off: 0
   verify:
 
-- name: smgii Battery Eq mode is enabled
-  unique_id: smgii1_battery_eq_mode_is_enabled
+- name: Battery Eq Mode Enabled
+  unique_id: smgii1_battery_eq_mode_enabled
   slave: 1
-  address: 313
+  address: 651
   write_type: holdings
   command_on: 1
   command_off: 0
   verify:
 
-- name: smgii Remote switch
+- name: Remote Switch
   unique_id: smgii1_remote_switch
   slave: 1
-  address: 420
+  address: 694
   write_type: holdings
   command_on: 1
   command_off: 0

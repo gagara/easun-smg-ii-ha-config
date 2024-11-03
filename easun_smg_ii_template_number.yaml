@@ -108,7 +108,7 @@
   state: "{{ states('sensor.constant_pressure_to_float_waiting_time') }}"
   min: 0
   max: 900
-  step: 1
+  step: 5
   availability: "{{ not states('sensor.constant_pressure_to_float_waiting_time') in ['unavailable', 'unknown', 'none'] }}"
   set_value:
     - service: modbus.write_register
@@ -116,7 +116,7 @@
         address: 639
         unit: 1
         hub: easun_smg_ii
-        value: "{{ [value * 10] }}"
+        value: "{{ [value] }}"
 
 - name: Battery Overvoltage Protection Point
   unique_id: smgii1_battery_overvoltage_protection_point
