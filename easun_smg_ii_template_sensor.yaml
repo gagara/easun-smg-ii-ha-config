@@ -1,5 +1,5 @@
-- name: Operating Mode Text
-  unique_id: smgii1_operating_mode_text
+- name: smgii1 Operating Mode Text
+  unique_id: 20a9b15f-3c88-4715-a785-be80295733ff
   state: >
     {% set modes = {
       '0': 'Power On Mode',
@@ -10,14 +10,14 @@
       '5': 'Charging mode',
       '6': 'Fault mode'}
     %}
-    {% if states('sensor.operating_mode') in modes.keys() %}
-      {{ modes.get(states('sensor.operating_mode')) }}
+    {% if states('sensor.smgii1_operating_mode') in modes.keys() %}
+      {{ modes.get(states('sensor.smgii1_operating_mode')) }}
     {% else %}
-      {{ states('sensor.operating_mode') }}
+      {{ states('sensor.smgii1_operating_mode') }}
     {% endif %}
 
-- name: Fault Code Text
-  unique_id: smgii1_fault_code_text
+- name: smgii1 Fault Code Text
+  unique_id: 3a11739d-de85-4eae-87dc-b917f6fb0338
   state: >
     {% set codes = {
       1 : 'Over temperature of inverter module',
@@ -48,9 +48,9 @@
       26: 'The battery type is incompatible',
       27: 'Parallel versions are incompatible'}
     %}
-    {% set code = states('sensor.fault_code')|int(-1) %}
+    {% set code = states('sensor.smgii1_fault_code')|int(-1) %}
     {% if code == -1 %}
-      {{ states('sensor.fault_code') }}
+      {{ states('sensor.smgii1_fault_code') }}
     {% elif code == 0 %}
       {{ 'OK' }}
     {% else %}
@@ -61,8 +61,8 @@
       {% endfor %}
     {% endif %}
 
-- name: Warning Code Text
-  unique_id: smgii1_warning_code_text
+- name: smgii1 Warning Code Text
+  unique_id: 7e9f60c6-cf2a-46a7-860a-0626d8588628
   state: >
     {% set codes = {
       1 : 'bit 1 Reserve',
@@ -85,10 +85,10 @@
       18: 'Output mode of Single and Parallel systems is inconsistent',
       19: 'Battery voltage difference of parallel system is too large'}
     %}
-    {% set code = states('sensor.warning_code')|int(-1) %}
+    {% set code = states('sensor.smgii1_warning_code')|int(-1) %}
     {% set ns = namespace(out='') %}
     {% if code == -1 %}
-      {{ states('sensor.warning_code') }}
+      {{ states('sensor.smgii1_warning_code') }}
     {% elif code == 0 %}
       {{ 'OK' }}
     {% else %}
@@ -103,22 +103,22 @@
       {{ns.out}}
     {% endif %}
 
-- name: Output Priority
-  unique_id: smgii1_output_priority
+- name: smgii1 Output Priority
+  unique_id: 0fd41a77-4126-4ffd-b820-81abc5203d63
   state: >
     {% set modes = {
       '1': 'SUB',
       '2': 'SBU',
       '3': 'SUF'}
     %}
-    {% if states('sensor.output_priority_code') in modes.keys() %}
-      {{ modes.get(states('sensor.output_priority_code')) }}
+    {% if states('sensor.smgii1_output_priority_code') in modes.keys() %}
+      {{ modes.get(states('sensor.smgii1_output_priority_code')) }}
     {% else %}
-      {{ states('sensor.output_priority_code') }}
+      {{ states('sensor.smgii1_output_priority_code') }}
     {% endif %}
 
-- name: Charger Source Priority
-  unique_id: smgii1_charger_source_priority
+- name: smgii1 Charger Source Priority
+  unique_id: 4d693e91-4d8e-4a0b-963b-64c96fc9d04f
   state: >
     {% set modes = {
       '1': 'SOF',
@@ -126,14 +126,14 @@
       '3': 'OSO',
       '4': 'SOR'}
     %}
-    {% if states('sensor.charger_source_priority_code') in modes.keys() %}
-      {{ modes.get(states('sensor.charger_source_priority_code')) }}
+    {% if states('sensor.smgii1_charger_source_priority_code') in modes.keys() %}
+      {{ modes.get(states('sensor.smgii1_charger_source_priority_code')) }}
     {% else %}
-      {{ states('sensor.charger_source_priority_code') }}
+      {{ states('sensor.smgii1_charger_source_priority_code') }}
     {% endif %}
 
-- name: Buzzer Mode
-  unique_id: smgii1_buzzer_mode
+- name: smgii1 Buzzer Mode
+  unique_id: 4da5f44c-c44a-46b3-8d5e-a2c3226ed3a8
   state: >
     {% set modes = {
       '0': 'Silent',
@@ -141,8 +141,8 @@
       '2': 'Faults,Warnings',
       '3': 'Faults'}
     %}
-    {% if states('sensor.buzzer_mode_code') in modes.keys() %}
-      {{ modes.get(states('sensor.buzzer_mode_code')) }}
+    {% if states('sensor.smgii1_buzzer_mode_code') in modes.keys() %}
+      {{ modes.get(states('sensor.smgii1_buzzer_mode_code')) }}
     {% else %}
-      {{ states('sensor.buzzer_mode_code') }}
+      {{ states('sensor.smgii1_buzzer_mode_code') }}
     {% endif %}

@@ -1,11 +1,11 @@
-- name: Output Priority
-  unique_id: smgii1_output_priority_select
+- name: smgii1 Output Priority
+  unique_id: 74032f2d-1733-4329-add0-1e748bbac1fc
   options: "{{ ['SUB', 'SBU', 'SUF'] }}"
   state: >
     {% if (this.attributes.options|list|count > 0) %}
-      {{ this.attributes.options[int(states('sensor.output_priority_code'))-1] }}
+      {{ this.attributes.options[int(states('sensor.smgii1_output_priority_code'))-1] }}
     {% endif %}
-  availability: "{{ not (states('sensor.output_priority_code') in ['unavailable', 'unknown', 'none']) }}"
+  availability: "{{ not (states('sensor.smgii1_output_priority_code') in ['unavailable', 'unknown', 'none']) }}"
   select_option:
     - service: modbus.write_register
       data:
@@ -14,14 +14,14 @@
         hub: easun_smg_ii
         value: "{{ [this.attributes.options.index(option)+1] }}"
 
-- name: Charger Source Priority
-  unique_id: smgii1_charger_source_priority_select
+- name: smgii1 Charger Source Priority
+  unique_id: a6164ca8-e311-4885-b477-a004e9480f1e
   options: "{{ ['SOF (SolarFirst)', 'SNU (Solar&Utility)', 'OSO (Only Solar)', 'SOR (Solar Residual)'] }}"
   state: >
     {% if (this.attributes.options|list|count > 0) %}
-      {{ this.attributes.options[int(states('sensor.charger_source_priority_code'))-1] }}
+      {{ this.attributes.options[int(states('sensor.smgii1_charger_source_priority_code'))-1] }}
     {% endif %}
-  availability: "{{ not states('sensor.charger_source_priority_code') in ['unavailable', 'unknown', 'none'] }}"
+  availability: "{{ not states('sensor.smgii1_charger_source_priority_code') in ['unavailable', 'unknown', 'none'] }}"
   select_option:
     - service: modbus.write_register
       data:
@@ -30,14 +30,14 @@
         hub: easun_smg_ii
         value: "{{ [this.attributes.options.index(option)+1] }}"
 
-- name: Buzzer Mode
-  unique_id: smgii1_buzzer_mode_select
+- name: smgii1 Buzzer Mode
+  unique_id: f41ffd4a-8a5b-4d25-b8f7-6f513cc3be0e
   options: "{{ ['Silent', 'Faults,Warnings,Source Chg', 'Faults,Warnings', 'Faults'] }}"
   state: >
     {% if (this.attributes.options|list|count > 0) %}
-      {{ this.attributes.options[int(states('sensor.buzzer_mode_code'))] }}
+      {{ this.attributes.options[int(states('sensor.smgii1_buzzer_mode_code'))] }}
     {% endif %}
-  availability: "{{ not states('sensor.buzzer_mode_code') in ['unavailable', 'unknown', 'none'] }}"
+  availability: "{{ not states('sensor.smgii1_buzzer_mode_code') in ['unavailable', 'unknown', 'none'] }}"
   select_option:
     - service: modbus.write_register
       data:

@@ -1,10 +1,10 @@
-- name: Max Charging Current
-  unique_id: smgii1_maximum_charging_current
-  state: "{{ states('sensor.maximum_charging_current') }}"
-  min: "{{ [2, states('sensor.maximum_mains_charging_current')|int(2)]|max }}"
+- name: smgii1 Max Charging Current
+  unique_id: 64103955-5fb3-48c1-906a-73f642a9c446
+  state: "{{ states('sensor.smgii1_max_charging_current_setting') }}"
+  min: "{{ [2, states('sensor.smgii1_max_mains_charging_current_setting')|int(2)]|max }}"
   max: 80
   step: 1
-  availability: "{{ not states('sensor.maximum_charging_current') in ['unavailable', 'unknown', 'none'] }}"
+  availability: "{{ not states('sensor.smgii1_max_charging_current_setting') in ['unavailable', 'unknown', 'none'] }}"
   set_value:
     - service: modbus.write_register
       data:
@@ -13,13 +13,13 @@
         hub: easun_smg_ii
         value: "{{ [value * 10] }}"
 
-- name: Max Mains Charging Current
-  unique_id: smgii1_maximum_mains_charging_current
-  state: "{{ states('sensor.maximum_mains_charging_current') }}"
+- name: smgii1 Max Mains Charging Current
+  unique_id: 5b1fd3e1-d082-4494-9425-227f3da694cf
+  state: "{{ states('sensor.smgii1_max_mains_charging_current_setting') }}"
   min: 2
-  max: "{{ [60, states('sensor.maximum_charging_current')|int(60)]|min }}"
+  max: "{{ [60, states('sensor.smgii1_max_charging_current_setting')|int(60)]|min }}"
   step: 1
-  availability: "{{ not states('sensor.maximum_mains_charging_current') in ['unavailable', 'unknown', 'none'] }}"
+  availability: "{{ not states('sensor.smgii1_max_mains_charging_current_setting') in ['unavailable', 'unknown', 'none'] }}"
   set_value:
     - service: modbus.write_register
       data:
@@ -28,13 +28,13 @@
         hub: easun_smg_ii
         value: "{{ [value * 10] }}"
 
-- name: Battery Low Voltage Protection
-  unique_id: smgii1_battery_low_voltage_protection
-  state: "{{ states('sensor.battery_low_voltage_protection') }}"
+- name: smgii1 Low Voltage Protection
+  unique_id: 752077ea-6d0c-4b78-9ed3-319e368808cc
+  state: "{{ states('sensor.smgii1_low_voltage_protection_setting') }}"
   min: 40
-  max: "{{ [54, states('sensor.battery_back_to_grid_voltage')|float(54.1)-0.1]|min }}"
+  max: "{{ [54, states('sensor.smgii1_back_to_grid_voltage_setting')|float(54.1)-0.1]|min }}"
   step: 0.1
-  availability: "{{ not states('sensor.battery_low_voltage_protection') in ['unavailable', 'unknown', 'none'] }}"
+  availability: "{{ not states('sensor.smgii1_low_voltage_protection_setting') in ['unavailable', 'unknown', 'none'] }}"
   set_value:
     - service: modbus.write_register
       data:
@@ -43,13 +43,13 @@
         hub: easun_smg_ii
         value: "{{ [value * 10] }}"
 
-- name: Battery Back to Grid Voltage
-  unique_id: smgii1_battery_back_to_grid_voltage
-  state: "{{ states('sensor.battery_back_to_grid_voltage') }}"
-  min: "{{ [44, states('sensor.battery_low_voltage_protection')|float(43.9)+0.1]|max }}"
-  max: "{{ [54, states('sensor.battery_mains_high_voltage')|float(54.1)-0.1]|min }}"
+- name: smgii1 Back to Grid Voltage
+  unique_id: 006695c7-04dd-44a9-9714-cd14f5bcc4e3
+  state: "{{ states('sensor.smgii1_back_to_grid_voltage_setting') }}"
+  min: "{{ [44, states('sensor.smgii1_low_voltage_protection_setting')|float(43.9)+0.1]|max }}"
+  max: "{{ [54, states('sensor.smgii1_back_to_battery_voltage_setting')|float(54.1)-0.1]|min }}"
   step: 0.1
-  availability: "{{ not states('sensor.battery_back_to_grid_voltage') in ['unavailable', 'unknown', 'none'] }}"
+  availability: "{{ not states('sensor.smgii1_back_to_grid_voltage_setting') in ['unavailable', 'unknown', 'none'] }}"
   set_value:
     - service: modbus.write_register
       data:
@@ -58,13 +58,13 @@
         hub: easun_smg_ii
         value: "{{ [value * 10] }}"
 
-- name: Battery Back to OffGrid Voltage
-  unique_id: smgii1_battery_back_to_offgrid_voltage
-  state: "{{ states('sensor.battery_back_to_offgrid_voltage') }}"
-  min: "{{ [48, states('sensor.battery_back_to_grid_voltage')|float(47.9)+0.1]|max }}"
-  max: "{{ [62, states('sensor.max_charging_voltage')|float(62)-0.5]|min }}"
+- name: smgii1 Back to Battery Voltage
+  unique_id: dd62063c-dc50-41dc-9c60-7cc39cfcabca
+  state: "{{ states('sensor.smgii1_back_to_battery_voltage_setting') }}"
+  min: "{{ [48, states('sensor.smgii1_back_to_grid_voltage_setting')|float(47.9)+0.1]|max }}"
+  max: "{{ [62, states('sensor.smgii1_bulk_charging_voltage_setting')|float(62)-0.5]|min }}"
   step: 0.1
-  availability: "{{ not states('sensor.battery_back_to_offgrid_voltage') in ['unavailable', 'unknown', 'none'] }}"
+  availability: "{{ not states('sensor.smgii1_back_to_battery_voltage_setting') in ['unavailable', 'unknown', 'none'] }}"
   set_value:
     - service: modbus.write_register
       data:
@@ -73,13 +73,13 @@
         hub: easun_smg_ii
         value: "{{ [value * 10] }}"
 
-- name: Max Charging Voltage
-  unique_id: smgii1_max_charging_voltage
-  state: "{{ states('sensor.max_charging_voltage') }}"
-  min: "{{ [48, states('sensor.floating_charging_voltage')|float(48)]|max }}"
-  max: "{{ [62, states('sensor.battery_overvoltage_protection_point')|float(62)-4]|min }}"
+- name: smgii1 Bulk Charging Voltage
+  unique_id: 55ef23c1-0e3b-46dc-bf0e-33b53c04898a
+  state: "{{ states('sensor.smgii1_bulk_charging_voltage_setting') }}"
+  min: "{{ [48, states('sensor.smgii1_floating_charging_voltage_setting')|float(48)]|max }}"
+  max: "{{ [62, states('sensor.smgii1_overvoltage_protection_setting')|float(62)-4]|min }}"
   step: 0.1
-  availability: "{{ not states('sensor.max_charging_voltage') in ['unavailable', 'unknown', 'none'] }}"
+  availability: "{{ not states('sensor.smgii1_bulk_charging_voltage_setting') in ['unavailable', 'unknown', 'none'] }}"
   set_value:
     - service: modbus.write_register
       data:
@@ -88,13 +88,13 @@
         hub: easun_smg_ii
         value: "{{ [value * 10] }}"
 
-- name: Floating Charging Voltage
-  unique_id: smgii1_floating_charging_voltage
-  state: "{{ states('sensor.floating_charging_voltage') }}"
+- name: smgii1 Floating Charging Voltage
+  unique_id: cf070880-11e0-4347-8cb3-cc5b33dda496
+  state: "{{ states('sensor.smgii1_floating_charging_voltage_setting') }}"
   min: 48
-  max: "{{ [64, states('sensor.max_charging_voltage')|float(64)]|min }}"
+  max: "{{ [64, states('sensor.smgii1_bulk_charging_voltage_setting')|float(64)]|min }}"
   step: 0.1
-  availability: "{{ not states('sensor.floating_charging_voltage') in ['unavailable', 'unknown', 'none'] }}"
+  availability: "{{ not states('sensor.smgii1_floating_charging_voltage_setting') in ['unavailable', 'unknown', 'none'] }}"
   set_value:
     - service: modbus.write_register
       data:
@@ -103,13 +103,13 @@
         hub: easun_smg_ii
         value: "{{ [value * 10] }}"
 
-- name: Constant Pressure to Float Waiting Time
-  unique_id: smgii1_constant_pressure_to_float_waiting_time
-  state: "{{ states('sensor.constant_pressure_to_float_waiting_time') }}"
+- name: smgii1 Bulk Charging Time
+  unique_id: 6070f84c-ced0-4b67-a421-76692e2d0f80
+  state: "{{ states('sensor.smgii1_bulk_charging_time_setting') }}"
   min: 0
   max: 900
   step: 5
-  availability: "{{ not states('sensor.constant_pressure_to_float_waiting_time') in ['unavailable', 'unknown', 'none'] }}"
+  availability: "{{ not states('sensor.smgii1_bulk_charging_time_setting') in ['unavailable', 'unknown', 'none'] }}"
   set_value:
     - service: modbus.write_register
       data:
@@ -118,13 +118,13 @@
         hub: easun_smg_ii
         value: "{{ [value] }}"
 
-- name: Battery Overvoltage Protection Point
-  unique_id: smgii1_battery_overvoltage_protection_point
-  state: "{{ states('sensor.battery_overvoltage_protection_point') }}"
-  min: "{{ [56, states('sensor.max_charging_voltage')|float(56)]|max }}"
+- name: smgii1 Overvoltage Protection
+  unique_id: cd0e7669-ff53-4eb1-bfdb-2c1936dd7041
+  state: "{{ states('sensor.smgii1_overvoltage_protection_setting') }}"
+  min: "{{ [56, states('sensor.smgii1_bulk_charging_voltage_setting')|float(56)]|max }}"
   max: 66
   step: 0.1
-  availability: "{{ not states('sensor.battery_overvoltage_protection_point') in ['unavailable', 'unknown', 'none'] }}"
+  availability: "{{ not states('sensor.smgii1_overvoltage_protection_setting') in ['unavailable', 'unknown', 'none'] }}"
   set_value:
     - service: modbus.write_register
       data:
@@ -132,3 +132,18 @@
         unit: 1
         hub: easun_smg_ii
         value: "{{ [value * 10] }}"
+
+- name: smgii1 Max Discharge Current
+  unique_id: c83b35e7-5ec5-42c6-acf7-48c564870936
+  state: "{{ states('sensor.smgii1_max_discharge_current_setting') }}"
+  min: 0
+  max: 500
+  step: 5
+  availability: "{{ not states('sensor.smgii1_max_discharge_current_setting') in ['unavailable', 'unknown', 'none'] }}"
+  set_value:
+    - service: modbus.write_register
+      data:
+        address: 642
+        unit: 1
+        hub: easun_smg_ii
+        value: "{{ [value] }}"

@@ -1,14 +1,5 @@
-- name: Exit Fault State
-  unique_id: smgii1_exit_fault_state_switch
-  slave: 1
-  address: 426
-  write_type: holdings
-  command_on: 1
-  command_off: 0
-  verify:
-
-- name: LCD backlight
-  unique_id: smgii1_lcd_backlight
+- name: smgii1 LCD backlight
+  unique_id: ebf381e3-c047-464a-ab1d-4a31f47cbb4f
   slave: 1
   address: 679
   write_type: holdings
@@ -16,8 +7,8 @@
   command_off: 0
   verify:
 
-- name: LCD Return to Homepage
-  unique_id: smgii1_lcd_return_to_homepage
+- name: smgii1 LCD Return to Homepage
+  unique_id: 3ce59988-1515-42a6-9b7a-f7dfb7426d08
   slave: 1
   address: 680
   write_type: holdings
@@ -25,8 +16,8 @@
   command_off: 0
   verify:
 
-- name: Energy-saving mode
-  unique_id: smgii1_energy_saving_mode
+- name: smgii1 Energy-saving mode
+  unique_id: 5de14b9b-ecb9-49ad-9865-914d8669abc5
   slave: 1
   address: 681
   write_type: holdings
@@ -34,8 +25,8 @@
   command_off: 0
   verify:
 
-- name: Overload Automatic Restart
-  unique_id: smgii1_overload_automatic_restart
+- name: smgii1 Overload Automatic Restart
+  unique_id: eab01df6-4efb-416b-987a-f52dfa38ab37
   slave: 1
   address: 682
   write_type: holdings
@@ -43,8 +34,8 @@
   command_off: 0
   verify:
 
-- name: Over Temperature Automatic Restart
-  unique_id: smgii1_over_temperature_automatic_restart
+- name: smgii1 Over Temperature Automatic Restart
+  unique_id: 32a44974-c5b0-4fe5-b205-c7a1f327dec8
   slave: 1
   address: 683
   write_type: holdings
@@ -52,8 +43,8 @@
   command_off: 0
   verify:
 
-- name: Overload Transfer to Bypass
-  unique_id: smgii1_overload_transfer_to_bypass
+- name: smgii1 Overload Transfer to Bypass
+  unique_id: 1f6d358a-cb48-4ff2-88cc-4fa4eb1ccfa1
   slave: 1
   address: 684
   write_type: holdings
@@ -61,8 +52,8 @@
   command_off: 0
   verify:
 
-- name: Battery Eq Mode Enabled
-  unique_id: smgii1_battery_eq_mode_enabled
+- name: smgii1 Battery Eq Mode Enabled
+  unique_id: 370c3770-596f-4988-87ba-c4653d2cd385
   slave: 1
   address: 651
   write_type: holdings
@@ -70,11 +61,20 @@
   command_off: 0
   verify:
 
-- name: Remote Switch
-  unique_id: smgii1_remote_switch
+- name: smgii1 Remote Switch
+  unique_id: 2d2781cd-57f4-4dfb-bf99-049ed21131f1
   slave: 1
   address: 694
   write_type: holdings
   command_on: 1
   command_off: 0
   verify:
+
+#- name: smgii1 Exit Fault State
+#  unique_id: 99b2a13b-8c96-4cc0-bbb8-567e78fd2c7a
+#  slave: 1
+#  address: 426
+#  write_type: holdings
+#  command_on: 1
+#  command_off: 0
+#  verify:
