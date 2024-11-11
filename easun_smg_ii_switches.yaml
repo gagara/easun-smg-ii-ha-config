@@ -1,80 +1,137 @@
-- name: smgii1 LCD backlight
-  unique_id: ebf381e3-c047-464a-ab1d-4a31f47cbb4f
+- name: smgii1 OP2 Output Allowed
   slave: 1
-  address: 679
+  address: 609
   write_type: holdings
   command_on: 1
   command_off: 0
   verify:
+  unique_id: b7d17916-c044-40c8-b27f-9396fa3c0e2e
 
-- name: smgii1 LCD Return to Homepage
-  unique_id: 3ce59988-1515-42a6-9b7a-f7dfb7426d08
-  slave: 1
-  address: 680
-  write_type: holdings
-  command_on: 1
-  command_off: 0
-  verify:
-
-- name: smgii1 Energy-saving mode
-  unique_id: 5de14b9b-ecb9-49ad-9865-914d8669abc5
-  slave: 1
-  address: 681
-  write_type: holdings
-  command_on: 1
-  command_off: 0
-  verify:
-
-- name: smgii1 Overload Automatic Restart
-  unique_id: eab01df6-4efb-416b-987a-f52dfa38ab37
-  slave: 1
-  address: 682
-  write_type: holdings
-  command_on: 1
-  command_off: 0
-  verify:
-
-- name: smgii1 Over Temperature Automatic Restart
-  unique_id: 32a44974-c5b0-4fe5-b205-c7a1f327dec8
-  slave: 1
-  address: 683
-  write_type: holdings
-  command_on: 1
-  command_off: 0
-  verify:
-
-- name: smgii1 Overload Transfer to Bypass
-  unique_id: 1f6d358a-cb48-4ff2-88cc-4fa4eb1ccfa1
-  slave: 1
-  address: 684
-  write_type: holdings
-  command_on: 1
-  command_off: 0
-  verify:
-
-- name: smgii1 Battery Eq Mode Enabled
-  unique_id: 370c3770-596f-4988-87ba-c4653d2cd385
+- name: smgii1 Battery Equalization Mode
   slave: 1
   address: 651
   write_type: holdings
   command_on: 1
   command_off: 0
   verify:
+  unique_id: 16728973-9578-455d-8afc-b9279ba61691
 
-- name: smgii1 Remote Switch
-  unique_id: 2d2781cd-57f4-4dfb-bf99-049ed21131f1
+- name: smgii1 Equalization Activated Immediately
   slave: 1
-  address: 694
+  address: 656
   write_type: holdings
   command_on: 1
   command_off: 0
   verify:
+  unique_id: 80c133c1-a277-4a31-80b6-60e03ea1f403
 
-#- name: smgii1 Exit Fault State
-#  unique_id: 99b2a13b-8c96-4cc0-bbb8-567e78fd2c7a
-#  slave: 1
-#  address: 426
-#  write_type: holdings
-#  command_on: 1
-#  command_off: 0
-#  verify:
+- name: smgii1 LCD backlight
+  slave: 1
+  address: 679
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: ebf381e3-c047-464a-ab1d-4a31f47cbb4f
+
+- name: smgii1 LCD Return to Homepage
+  slave: 1
+  address: 680
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: 3ce59988-1515-42a6-9b7a-f7dfb7426d08
+
+- name: smgii1 Energy-saving mode
+  slave: 1
+  address: 681
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: 5de14b9b-ecb9-49ad-9865-914d8669abc5
+
+- name: smgii1 Overload Automatic Restart
+  slave: 1
+  address: 682
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: eab01df6-4efb-416b-987a-f52dfa38ab37
+
+- name: smgii1 Over Temperature Automatic Restart
+  slave: 1
+  address: 683
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: 32a44974-c5b0-4fe5-b205-c7a1f327dec8
+
+- name: smgii1 Overload Transfer to Bypass
+  slave: 1
+  address: 684
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: 1f6d358a-cb48-4ff2-88cc-4fa4eb1ccfa1
+
+- name: smgii1 PV Parallel Detection
+  slave: 1
+  address: 685
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: f1fc84d1-74fa-4a96-9b65-83d3bd8ad158
+
+- name: smgii1 External CT
+  slave: 1
+  address: 686
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: 5e4e0326-5eb2-400d-9a21-44c2b547c136
+
+  # TODO: Mask warnings
+  # 687
+
+- name: smgii1 Automatic Mains Output
+  slave: 1
+  address: 690
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: 831afa4d-4fab-4c57-bcb0-4609f924d980
+
+- name: smgii1 Islanding Detection
+  slave: 1
+  address: 692
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: 84e3742d-7145-4edd-8926-59ad66eebeb6
+
+- name: smgii1 Exit Fault State
+  slave: 1
+  address: 695
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: 308efc10-c323-4e94-b36d-8b8dc553a789
+
+- name: smgii1 Ground Relay Enabled
+  slave: 1
+  address: 707
+  write_type: holdings
+  command_on: 1
+  command_off: 0
+  verify:
+  unique_id: 91a5312d-e4b0-47df-a58e-35842fcca81e

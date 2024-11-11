@@ -1,8 +1,8 @@
 # easun-smg-ii-ha-config
 
-This fork contains Home Assistant configuration to monitor and control a EASUN ISolar SMG II 8/11kW inverter models (with 2 MPPTS, feed-to-grid option, and no-parallel support) via USB or RS232 cable.
+This fork contains Home Assistant configuration to monitor and control a *EASUN ISolar SMG II 8/11kW* inverter models (with 2 MPPTS, feed-to-grid option, and no-parallel support) via USB or RS232 cable.
 
-(https://www.powland.net/collections/isolar-smg-ii/products/isolar-smg-ii-11kw-48v-wifi)
+e.g.: https://www.powland.net/collections/isolar-smg-ii/products/isolar-smg-ii-11kw-48v-wifi
 
 # Installation
 

@@ -7,10 +7,17 @@
 
 - name: smgii1 Warning Code
   slave: 1
-  address: 108
+  address: 104
   data_type: uint32
   input_type: holding
   unique_id: b1b11683-79d4-4da0-bc3e-aca50456083b
+
+- name: smgii1 Device Type
+  slave: 1
+  address: 171
+  data_type: int16
+  input_type: holding
+  unique_id: 54f846e2-0576-4a4f-9d90-b344fc21da29
 
 - name: smgii1 Serial Number
   slave: 1
@@ -20,19 +27,19 @@
   input_type: holding
   unique_id: ac9532fa-73d8-4c5b-919b-854a548081bf
 
-- name: smgii1 Operating Mode
+- name: smgii1 Power Flow State Code
+  slave: 1
+  address: 198
+  data_type: uint16
+  input_type: holding
+  unique_id: c7710cf0-259e-4b02-aa03-f58d1463330a
+
+- name: smgii1 Operating Mode Code
   slave: 1
   address: 201
   data_type: uint16
   input_type: holding
-  unique_id: 7d06cf6e-26a9-4f8a-9fde-6c9506f54b42
-  #0: Power On Mode
-  #1: Standby mode
-  #2: Mains mode
-  #3: Off-Grid mode
-  #4: Bypass mode
-  #5: Charging mode
-  #6: Fault mode
+  unique_id: d61c2e42-b003-4b59-92f8-ccf16ebd203c
 
 - name: smgii1 Grid Frequency
   unit_of_measurement: Hz
@@ -48,12 +55,41 @@
 - name: smgii1 AC Charging Power
   unit_of_measurement: W
   slave: 1
-  address: 209
+  address: 206
   data_type: int16
   device_class: power
   precision: 0
   input_type: holding
   unique_id: 0d214077-cd68-4a67-b3e1-cc35e677f004
+
+- name: smgii1 Power Flow State Expansion Code
+  slave: 1
+  address: 207
+  data_type: uint16
+  input_type: holding
+  unique_id: a56e1498-e236-4bea-8344-0950102472fa
+
+- name: smgii1 Inverter Frequency
+  unit_of_measurement: Hz
+  slave: 1
+  address: 227
+  data_type: int16
+  device_class: frequency
+  scale: 0.01
+  precision: 2
+  input_type: holding
+  unique_id: f2cc27f8-81bc-4687-944c-71c5e2bd3786
+
+- name: smgii1 AC Charging Current
+  unit_of_measurement: A
+  slave: 1
+  address: 230
+  data_type: int16
+  device_class: current
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: eb593045-ae84-41f4-a763-7ad1d500c7a4
 
 - name: smgii1 Inverter Module Temperature
   unit_of_measurement: °C
@@ -65,35 +101,16 @@
   input_type: holding
   unique_id: 86f96a41-ddff-40c1-a515-a6b19501a2d4
 
-- name: smgii1 Output Active Power
-  unit_of_measurement: W
+- name: smgii1 Output Frequency
+  unit_of_measurement: Hz
   slave: 1
-  address: 254
+  address: 253
   data_type: int16
-  device_class: power
-  precision: 0
+  device_class: frequency
+  scale: 0.01
+  precision: 2
   input_type: holding
-  unique_id: ef9b30de-0425-410e-a24d-ad410f76e524
-
-- name: smgii1 Output Apparent Power
-  unit_of_measurement: VA
-  slave: 1
-  address: 255
-  data_type: int16
-  device_class: apparent_power
-  precision: 0
-  input_type: holding
-  unique_id: 4659b995-24e8-4545-a4d1-046c00a190ab
-
-- name: smgii1 Load Percentage
-  unit_of_measurement: "%"
-  slave: 1
-  address: 256
-  data_type: int16
-  device_class: power_factor
-  precision: 0
-  input_type: holding
-  unique_id: c6a51257-0d3d-4947-a661-9891a5b66d20
+  unique_id: 822a9fc5-d1dd-4d46-8549-6232555a5a57
 
 - name: smgii1 Battery Voltage
   unit_of_measurement: V
@@ -199,7 +216,18 @@
   input_type: holding
   unique_id: f8b5250f-10be-4b94-97b9-4e4f0af1646e
 
-- name: smgii1 Grid Power
+- name: smgii1 Grid Current
+  unit_of_measurement: A
+  slave: 1
+  address: 339
+  data_type: int16
+  device_class: current
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: 3c408afe-c23e-49e1-946b-1e6b5f304349
+
+- name: smgii1 Grid Active Power
   unit_of_measurement: W
   slave: 1
   address: 340
@@ -207,7 +235,111 @@
   device_class: power
   precision: 0
   input_type: holding
-  unique_id: edc97d4f-2625-4c87-bbe2-6d6419e86358
+  unique_id: edc97d5f-2625-4c87-bbe2-6d6419e86358
+
+- name: smgii1 Grid Apparent Power
+  unit_of_measurement: VA
+  slave: 1
+  address: 341
+  data_type: int16
+  device_class: apparent_power
+  precision: 0
+  input_type: holding
+  unique_id: d9952ad3-9226-418b-84ef-e99ca90fe296
+
+- name: smgii1 Inverter Voltage
+  unit_of_measurement: V
+  slave: 1
+  address: 342
+  data_type: int16
+  device_class: voltage
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: a28b958b-d2b2-437e-abbc-3307019eac4d
+
+- name: smgii1 Inverter Current
+  unit_of_measurement: A
+  slave: 1
+  address: 343
+  data_type: int16
+  device_class: current
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: e651f3a9-69d5-46d3-83ea-ef7bf60ff52f
+
+- name: smgii1 Inverter Active Power
+  unit_of_measurement: W
+  slave: 1
+  address: 344
+  data_type: int16
+  device_class: power
+  precision: 0
+  input_type: holding
+  unique_id: 46e325a8-9661-4cf1-b38c-6a53217d78de
+
+- name: smgii1 Inverter Apparent Power
+  unit_of_measurement: VA
+  slave: 1
+  address: 345
+  data_type: int16
+  device_class: apparent_power
+  precision: 0
+  input_type: holding
+  unique_id: 02e4a937-ae44-4e7c-9845-6b65b7b02fcc
+
+- name: smgii1 Output Voltage
+  unit_of_measurement: V
+  slave: 1
+  address: 346
+  data_type: int16
+  device_class: voltage
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: e0b8f576-c358-48fa-9279-41beaf7f00d9
+
+- name: smgii1 Output Current
+  unit_of_measurement: A
+  slave: 1
+  address: 347
+  data_type: int16
+  device_class: current
+  scale: 0.1
+  precision: 1
+  input_type: holding
+  unique_id: d7918867-4a12-4fa9-924f-0fa05b9b2e24
+
+- name: smgii1 Output Active Power
+  unit_of_measurement: W
+  slave: 1
+  address: 348
+  data_type: int16
+  device_class: power
+  precision: 0
+  input_type: holding
+  unique_id: f744bf1f-0024-47b4-a541-b0584a318e25
+
+- name: smgii1 Output Apparent Power
+  unit_of_measurement: VA
+  slave: 1
+  address: 349
+  data_type: int16
+  device_class: apparent_power
+  precision: 0
+  input_type: holding
+  unique_id: 0db172ec-98c5-47c9-8032-d1d880a953bd
+
+- name: smgii1 Load Percentage
+  unit_of_measurement: "%"
+  slave: 1
+  address: 350
+  data_type: int16
+  device_class: power_factor
+  precision: 0
+  input_type: holding
+  unique_id: 944e039c-485d-4b34-9c88-28cb7eb8096d
 
 - name: smgii1 PV1 Voltage
   unit_of_measurement: V
@@ -241,6 +373,16 @@
   input_type: holding
   unique_id: 32fff2cf-204b-44a2-ae8c-bb017ae3cacd
 
+- name: smgii1 Output Power Balance
+  unit_of_measurement: W
+  slave: 1
+  address: 354
+  data_type: int32
+  device_class: power
+  precision: 0
+  input_type: holding
+  unique_id: 3bf848d9-04c4-4032-a66e-4292bf7e9821
+
 - name: smgii1 PV2 Voltage
   unit_of_measurement: V
   slave: 1
@@ -273,74 +415,88 @@
   input_type: holding
   unique_id: fdba95b0-0356-4ab7-80a5-30df65b94595
 
-- name: smgii1 Output Current
-  unit_of_measurement: A
+######### Read/Write registers ###########
+
+- name: smgii1 Output Mode Code
+  slave: 1
+  address: 600
+  data_type: uint16
+  input_type: holding
+  unique_id: 6b7bcef3-7c81-44f0-9e15-507200434299
+
+- name: smgii1 Output Priority1 Code
+  slave: 1
+  address: 601
+  data_type: uint16
+  input_type: holding
+  unique_id: b653f7cc-e664-4c46-9b1b-c490a03edc6f
+
+- name: smgii1 Output Priority2 Code
+  slave: 1
+  address: 602
+  data_type: uint16
+  input_type: holding
+  unique_id: 5f9cca9d-d10f-43ff-8b23-0e3247de8af9
+
+- name: smgii1 Output Priority2 Start Time
+  slave: 1
+  address: 603
+  data_type: uint16
+  input_type: holding
+  unique_id: fcf455e3-0996-4be0-ba5e-0cf13a79520d
+
+- name: smgii1 Output Priority2 End Time
+  slave: 1
+  address: 604
+  data_type: uint16
+  input_type: holding
+  unique_id: 202a9381-3e1a-4fbd-8254-db686b0c1dab
+
+- name: smgii1 Current Output Priority Code
   slave: 1
   address: 605
-  data_type: int16
-  device_class: current
-  scale: 0.1
-  precision: 1
+  data_type: uint16
   input_type: holding
-  unique_id: 79f80d24-7ff5-480c-892f-2b544cbece3e
+  unique_id: 6b30d805-5945-40a0-928c-d8add7653e46
 
-- name: smgii1 Output Voltage
+- name: smgii1 Output Voltage Setting
   unit_of_measurement: V
   slave: 1
   address: 606
   data_type: int16
   device_class: voltage
   scale: 0.1
-  precision: 1
+  precision: 0
   input_type: holding
-  unique_id: 98e5c958-7e78-4773-bdac-18e5f59979d9
+  unique_id: 98e5c959-7e78-4773-bdac-18e5f59979d9
 
-- name: smgii1 Output Frequency
+- name: smgii1 Output Frequency Setting
   unit_of_measurement: Hz
   slave: 1
   address: 607
   data_type: int16
   device_class: frequency
   scale: 0.01
-  precision: 2
+  precision: 0
   input_type: holding
-  unique_id: 8d7293a4-e85c-49c9-85fa-b9bdb5bc8cb6
+  unique_id: 8d7293a6-e85c-49c9-85fa-b9bdb5bc8cb6
+  
+# - name: smgii1 OP2 Overload Alarm Setting
+#   unit_of_measurement: "%"
+#   slave: 1
+#   address: 608
+#   data_type: int16
+#   device_class: power_factor
+#   precision: 0
+#   input_type: holding
+#   unique_id: 609c5147-9cd6-4e5f-b59d-db85dea8e0fd
 
-- name: smgii1 Daily PV Energy Generation
-  unit_of_measurement: kWh
+- name: smgii1 Battery Type Code
   slave: 1
-  address: 702
-  data_type: int16
-  device_class: energy_storage
-  scale: 0.01
-  precision: 2
-  input_type: holding
-  unique_id: 33099205-a14d-42c9-8dc6-1def33377c97
-
-- name: smgii1 Total PV Energy Generation
-  unit_of_measurement: kWh
-  slave: 1
-  address: 703
-  data_type: int32
-  device_class: energy_storage
-  scale: 0.01
-  precision: 2
-  input_type: holding
-  unique_id: e35cb14b-1cb1-4cda-aafc-df35f367f6a6
-
-  ###### Read/Write ######
-
-- name: smgii1 Output Priority Code
-  slave: 1
-  address: 601
+  address: 630
   data_type: uint16
   input_type: holding
-  unique_id: 3a38f801-5ced-4901-80d6-7f8ce2ad1f83
-  #1: SUB
-  #2: SBU
-  #3: SUF
-
-  # Battery type
+  unique_id: 2542b3b6-d9a5-44d1-a268-ea1cb5b68685
 
 - name: smgii1 Overvoltage Protection Setting
   unit_of_measurement: V
@@ -353,16 +509,40 @@
   input_type: holding
   unique_id: ee2275f8-250c-42af-9a77-66274ec22717
 
-- name: smgii1 Charger Source Priority Code
+- name: smgii1 Charger Source Priority1 Code
   slave: 1
   address: 632
   data_type: uint16
   input_type: holding
   unique_id: 133ac9b5-5687-4dae-919b-e123b32409c6
-  #1: SOF
-  #2: SNU
-  #3: OSO
-  #4: SOR
+
+- name: smgii1 Charger Source Priority2 Code
+  slave: 1
+  address: 633
+  data_type: uint16
+  input_type: holding
+  unique_id: c920894e-c2e2-49a6-b6b0-ed597ad05485
+
+- name: smgii1 Charger Source Priority2 Start Time
+  slave: 1
+  address: 634
+  data_type: uint16
+  input_type: holding
+  unique_id: a7af145d-5a27-4c7f-9d8e-5cd798173c9d
+
+- name: smgii1 Charger Source Priority2 End Time
+  slave: 1
+  address: 635
+  data_type: uint16
+  input_type: holding
+  unique_id: 3ed29174-f59d-49bc-ba09-779bae29a6a9
+
+- name: smgii1 Current Charger Source Priority Code
+  slave: 1
+  address: 636
+  data_type: uint16
+  input_type: holding
+  unique_id: aea8b32b-39ac-4c2f-9f7c-6d63a697ff41
 
 - name: smgii1 Bulk Charging Voltage Setting
   unit_of_measurement: V
@@ -461,47 +641,80 @@
   input_type: holding
   unique_id: 6c5a8d0a-6e78-426c-80ad-210fbe83ba3f
 
-  # % - 3
+- name: smgii1 Back to Battery SOC Setting
+  unit_of_measurement: "%"
+  slave: 1
+  address: 647
+  data_type: int16
+  device_class: power_factor
+  precision: 0
+  input_type: holding
+  unique_id: 94328b77-2e9c-4ea1-803a-9b1e8f0b5c6f
 
-- name: smgii1 Eq Charging Voltage Setting
+- name: smgii1 Back to Grid SOC Setting
+  unit_of_measurement: "%"
+  slave: 1
+  address: 648
+  data_type: int16
+  device_class: power_factor
+  precision: 0
+  input_type: holding
+  unique_id: 0751ec19-f1e2-4fb9-86d5-2c39e3980004
+
+- name: smgii1 Low SOC Protection Setting
+  unit_of_measurement: "%"
+  slave: 1
+  address: 650
+  data_type: int16
+  device_class: power_factor
+  precision: 0
+  input_type: holding
+  unique_id: 1af779f6-3164-4806-93e0-056a4d6ecd19
+
+- name: smgii1 Battery Equalization Voltage Setting
   unit_of_measurement: V
   slave: 1
-  address: 334
+  address: 652
   data_type: uint16
   device_class: voltage
   scale: 0.1
   precision: 1
   input_type: holding
-  unique_id: 3d603927-1e7d-49f3-88d0-8fe5f899473b
+  unique_id: 481e76b4-697b-4be5-a314-6d516e5a924c
 
 - name: smgii1 Battery Equalization Time Setting
   unit_of_measurement: min
   slave: 1
-  address: 335
+  address: 653
   data_type: uint16
   device_class: duration
   input_type: holding
   unique_id: 60d1dfa3-890b-4dea-a429-ac96de5ef4fa
 
-- name: smgii1 Eq Timeout Exit Setting
+- name: smgii1 Battery Equalization Timeout Setting
   unit_of_measurement: min
   slave: 1
-  address: 336
+  address: 654
   data_type: uint16
   device_class: duration
   input_type: holding
-  unique_id: d17999b6-c34a-4b1e-b0d0-d724f7cbb8c3
+  unique_id: ddb2039d-7b39-4323-80c7-1bb2ee00aaea
 
-- name: smgii1 Eq Charging Interval Setting
+- name: smgii1 Battery Equalization Interval Setting
   unit_of_measurement: day
   slave: 1
-  address: 337
+  address: 655
   data_type: uint16
   device_class: duration
   input_type: holding
-  unique_id: 5a071549-f627-4049-ae7b-e99594155e69
+  unique_id: f6152343-104a-478a-bc3a-0ff6f8a3494d
 
-  # Input mode: GNT
+- name: smgii1 AC Input Voltage Range Code
+  slave: 1
+  address: 677
+  data_type: uint16
+  input_type: holding
+  unique_id: a2e22811-60ba-4754-80a2-b26d445ed056
 
 - name: smgii1 Buzzer Mode Code
   slave: 1
@@ -509,34 +722,72 @@
   data_type: uint16
   input_type: holding
   unique_id: 6671c99b-ac16-4850-aad5-043f9baddfd0
-  #0: Silent
-  #1: Beep on input source changes, warnings and faults
-  #2: Beep on warnings and faults
-  #3: Beep on faults
 
-  #- name: smgii1 smgii Boot Method
-  #  slave: 1
-  #  address: 693
-  #  data_type: uint16
-  #  input_type: holding
-  #  unique_id: 4e936b5a-d107-4df6-b4c5-79adeed739d9
-  #  #0: local & remote
-  #  #1: local-only
-  #  #2: remote-only
+- name: smgii1 Masked Warnings Code
+  slave: 1
+  address: 687
+  data_type: uint32
+  input_type: holding
+  unique_id: e98d4e03-76b1-41ba-aee1-ea6a1190af03
 
-  #- name: smgii1 Exit Fault State
-  #  slave: 1
-  #  address: 426
-  #  data_type: uint16
-  #  input_type: holding
-  #  unique_id: c9c65c68-d245-4008-86ae-af77bd2791a8
-  #  #1: Exit the fault state(only when the inverter enters the fault mode, it could be available)
-  #
-- name: smgii1 Rated Power
+- name: smgii1 Dry Contact Mode Code
+  slave: 1
+  address: 689
+  data_type: uint16
+  input_type: holding
+  unique_id: 044b9043-b871-452d-8462-d300547694d0
+
+- name: smgii1 Rated PV Power Setting
   unit_of_measurement: W
   slave: 1
   address: 691
-  data_type: uint16
+  data_type: int16
   device_class: power
+  precision: 0
   input_type: holding
-  unique_id: b4c4d1c2-8700-4123-b19e-7d7672711721
+  unique_id: d283fc38-8dd0-4145-9a8b-b3c165f519f2
+
+- name: smgii1 Boot Method Code
+  slave: 1
+  address: 693
+  data_type: uint16
+  input_type: holding
+  unique_id: f17c8b07-b0e9-46ee-a1f0-afd458012398
+
+- name: smgii1 Remote Switch Code
+  slave: 1
+  address: 694
+  data_type: uint16
+  input_type: holding
+  unique_id: 31c0c26e-a944-460e-9d60-aecf82319317
+
+- name: smgii1 Daily PV Energy Generation
+  unit_of_measurement: kWh
+  slave: 1
+  address: 702
+  data_type: int16
+  device_class: energy_storage
+  scale: 0.01
+  precision: 2
+  input_type: holding
+  unique_id: 33099205-a14d-42c9-8dc6-1def33377c97
+
+- name: smgii1 Total PV Energy Generation
+  unit_of_measurement: kWh
+  slave: 1
+  address: 703
+  data_type: int32
+  device_class: energy_storage
+  scale: 0.01
+  precision: 2
+  input_type: holding
+  unique_id: e35cb14b-1cb1-4cda-aafc-df35f367f6a6
+
+- name: smgii1 Lithium Battery Activation Time Setting
+  unit_of_measurement: min
+  slave: 1
+  address: 709
+  data_type: uint16
+  device_class: duration
+  input_type: holding
+  unique_id: 42959697-1035-4283-9b2a-d8dc010f9f0b
