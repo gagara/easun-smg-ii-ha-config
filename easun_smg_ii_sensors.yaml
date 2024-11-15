@@ -216,17 +216,6 @@
   input_type: holding
   unique_id: f8b5250f-10be-4b94-97b9-4e4f0af1646e
 
-- name: smgii1 Grid Current
-  unit_of_measurement: A
-  slave: 1
-  address: 339
-  data_type: int16
-  device_class: current
-  scale: 0.1
-  precision: 1
-  input_type: holding
-  unique_id: 3c408afe-c23e-49e1-946b-1e6b5f304349
-
 - name: smgii1 Grid Active Power
   unit_of_measurement: W
   slave: 1
@@ -373,16 +362,6 @@
   input_type: holding
   unique_id: 32fff2cf-204b-44a2-ae8c-bb017ae3cacd
 
-- name: smgii1 Output Power Balance
-  unit_of_measurement: W
-  slave: 1
-  address: 354
-  data_type: int32
-  device_class: power
-  precision: 0
-  input_type: holding
-  unique_id: 3bf848d9-04c4-4032-a66e-4292bf7e9821
-
 - name: smgii1 PV2 Voltage
   unit_of_measurement: V
   slave: 1
@@ -480,16 +459,6 @@
   precision: 0
   input_type: holding
   unique_id: 8d7293a6-e85c-49c9-85fa-b9bdb5bc8cb6
-  
-# - name: smgii1 OP2 Overload Alarm Setting
-#   unit_of_measurement: "%"
-#   slave: 1
-#   address: 608
-#   data_type: int16
-#   device_class: power_factor
-#   precision: 0
-#   input_type: holding
-#   unique_id: 609c5147-9cd6-4e5f-b59d-db85dea8e0fd
 
 - name: smgii1 Battery Type Code
   slave: 1

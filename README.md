@@ -53,7 +53,7 @@ homeassistant:
 | Total Output Current | 0,1A | uint16 | 252 | 1 | R |  | 4,6 |
 | Total Output Frequency | 0,01Hz | uint16 | 253 | 1 | R |  | 3,4,5,6 |
 | Total Output Active Power | 1W | uint16 | 254 | 1 | R |  | 4,6 |
-| Total Output Apparent Power | 1W | uint16 | 255 | 1 | R |  | 4,6 |
+| Total Output Apparent Power | 1VA | uint16 | 255 | 1 | R |  | 4,6 |
 | Total Load Percentage | 1% | uint16 | 256 | 1 | R |  | 4,6 |
 | not used |  |  | 257 | 20 |  |  |  |
 | Battery Voltage | 0,1V | uint16 | 277 | 1 | R |  | 3,4,5,6 |
@@ -71,11 +71,11 @@ homeassistant:
 | not used |  |  | 328 | 10 |  |  |  |
 | L1 Grid Voltage | 0,1V | uint16 | 338 | 1 | R |  | 3,4,5,6 |
 | L1 Grid Current | 0,1A | uint16 | 339 | 1 | R |  |  |
-| L1 Grid Active Power | 1W | uint16 | 340 | 1 | R |  | 3,4,5,6 |
+| L1 Grid Active Power | 1W | int16 | 340 | 1 | R | Positive: energy consumed from grid; Negative: energy feed to grid | 3,4,5,6 |
 | L1 Grid Apparent Power | 1VA | uint16 | 341 | 1 | R |  |  |
 | L1 Inverter Voltage | 0,1V | uint16 | 342 | 1 | R |  | 3,4,5,6 |
 | L1 Inverter Current | 0,1A | uint16 | 343 | 1 | R |  | 3,4,5,6 |
-| L1 Inverter Active Power | 1W | int16 | 344 | 1 | R | Positive: inverter output; Negative: inverter input | 3,4,5,6 |
+| L1 Inverter Active Power | 1W | int16 | 344 | 1 | R | Positive: DC->AC flow; Negative: AC->DC flow | 3,4,5,6 |
 | L1 Inverter Apparent Power | 1VA | uint16 |  | 345 | 1 | R |  |  |
 | L1 Output Voltage | 0,1V | uint16 | 346 | 1 | R |  | 3,4,5,6 |
 | L1 Output Current | 0,1A | uint16 | 347 | 1 | R |  | 3,4,5,6 |
@@ -85,15 +85,15 @@ homeassistant:
 | PV1 Voltage | 0,1V | uint16 | 351 | 1 | R |  | 3,4,5,6 |
 | PV1 Current | 0,1A | uint16 | 352 | 1 | R |  | 3,4,5,6 |
 | PV1 Power | 1W | uint16 | 353 | 1 | R |  | 3,4,5,6 |
-| L1 Output Power Balance | 1W | int32 | 354 | 2 | R | Positive: energy consumed from grid; Negative: energy feed to grid |  |
+| L1 Output Power? | 1W | int32 | 354 | 2 | R | Positive: energy consumed from grid; Negative: energy feed to grid |  |
 | not used |  |  | 356 | 20 |  |  |  |
 | L2 Grid Voltage | 0,1V | uint16 | 376 | 1 | R |  |  |
 | L2 Grid Current | 0,1A | uint16 | 377 | 1 | R |  |  |
-| L2 Grid Active Power | 1W | uint16 | 378 | 1 | R |  |  |
+| L2 Grid Active Power | 1W | int16 | 378 | 1 | R | Positive: energy consumed from grid; Negative: energy feed to grid |  |
 | L2 Grid Apparent Power | 1VA | uint16 | 379 | 1 | R |  |  |
 | L2 Inverter Voltage | 0,1V | uint16 | 380 | 1 | R |  |  |
 | L2 Inverter Current | 0,1A | uint16 | 381 | 1 | R |  |  |
-| L2 Inverter Active Power | 1W | int16 | 382 | 1 | R | Positive: inverter output; Negative: inverter input |  |
+| L2 Inverter Active Power | 1W | int16 | 382 | 1 | R | Positive: DC->AC flow; Negative: AC->DC flow |  |
 | L2 Inverter Apparent Power | 1VA | uint16 | 383 | 1 | R |  |  |
 | L2 Output Voltage | 0,1V | uint16 | 384 | 1 | R |  | 4,6 |
 | L2 Output Current | 0,1A | uint16 | 385 | 1 | R |  | 4,6 |
@@ -103,15 +103,15 @@ homeassistant:
 | PV2 Voltage | 0,1V | uint16 | 389 | 1 | R |  | 3,4 |
 | PV2 Current | 0,1A | uint16 | 390 | 1 | R |  | 3,4 |
 | PV2 Power | 1W | uint16 | 391 | 1 | R |  | 3,4 |
-| L2 Output Power Balance | 1W | int32 | 392 | 2 | R | Positive: energy consumed from grid; Negative: energy feed to grid |  |
+| L2 Output Power? | 1W | int32 | 392 | 2 | R | Positive: energy consumed from grid; Negative: energy feed to grid |  |
 | not used |  |  | 394 | 20 |  |  |  |
 | L3 Grid Voltage | 0,1V | uint16 | 414 | 1 | R |  |  |
 | L3 Grid Current | 0,1A | uint16 | 415 | 1 | R |  |  |
-| L3 Grid Active Power | 1W | uint16 | 416 | 1 | R |  |  |
+| L3 Grid Active Power | 1W | int16 | 416 | 1 | R | Positive: energy consumed from grid; Negative: energy feed to grid |  |
 | L3 Grid Apparent Power | 1VA | uint16 | 417 | 1 | R |  |  |
 | L3 Inverter Voltage | 0,1V | uint16 | 418 | 1 | R |  |  |
 | L3 Inverter Current | 0,1A | uint16 | 419 | 1 | R |  |  |
-| L3 Inverter Active Power | 1W | int16 | 420 | 1 | R | Positive: inverter output; Negative: inverter input |  |
+| L3 Inverter Active Power | 1W | int16 | 420 | 1 | R | Positive: DC->AC flow; Negative: AC->DC flow |  |
 | L3 Inverter Apparent Power | 1VA | uint16 | 421 | 1 | R |  |  |
 | L3 Output Voltage | 0,1V | uint16 | 422 | 1 | R |  |  |
 | L3 Output Current | 0,1A | uint16 | 423 | 1 | R |  |  |
@@ -121,7 +121,7 @@ homeassistant:
 | PV3 Voltage | 0,1V | uint16 | 427 | 1 | R |  |  |
 | PV3 Current | 0,1A | uint16 | 428 | 1 | R |  |  |
 | PV3 Power | 1W | uint16 | 429 | 1 | R |  |  |
-| L3 Output Power Balance | 1W | int32 | 430 | 2 | R | Positive: energy consumed from grid; Negative: energy feed to grid |  |
+| L3 Output Power? | 1W | int32 | 430 | 2 | R | Positive: energy consumed from grid; Negative: energy feed to grid |  |
 | not used |  |  | 432 | 168 |  |  |  |
 | Output Mode |  | uint16 | 600 | 1 | R/W | 0: Single; 1: Parallel; 2: 3-Phase P1; 3: 3-Phase P2; 4: 3-Phase P3; 5: Split-phase P1; 6: Split-phase P2 | 3,4,5,6 |
 | Output Priority (primary) |  | uint16 | 601 | 1 | R/W | 1: SUB; 2: SBU; 3: SUF | 3,4,5,6 |

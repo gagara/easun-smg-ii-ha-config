@@ -94,21 +94,6 @@
         hub: easun_smg_ii
         value: "{{ [value * 100] }}"
 
-# - name: smgii1 OP2 Overload Alarm
-#   unique_id: 38b9738e-0bb4-4c5e-9e92-3474b24c38e9
-#   state: "{{ states('sensor.smgii1_op2_overload_alarm_setting')|int(0) }}"
-#   min: 0
-#   max: 100
-#   step: 10
-#   availability: "{{ not states('sensor.smgii1_op2_overload_alarm_setting') in ['unavailable', 'unknown', 'none'] }}"
-#   set_value:
-#     - service: modbus.write_register
-#       data:
-#         address: 608
-#         unit: 1
-#         hub: easun_smg_ii
-#         value: "{{ [value] }}"
-
 - name: smgii1 Overvoltage Protection
   unique_id: cd0e7669-ff53-4eb1-bfdb-2c1936dd7041
   unit_of_measurement: "V"

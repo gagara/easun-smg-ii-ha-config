@@ -355,3 +355,27 @@
     {% else %}
       {{ states('sensor.smgii1_remote_switch_code') }}
     {% endif %}
+
+- name: smgii1 Grid Consumed Power
+  unique_id: 6421b3b9-b827-48a1-bd21-981cae954182
+  unit_of_measurement: W
+  device_class: power
+  state: "{{ [states('sensor.smgii1_grid_active_power') | int(0), 0] | max }}"
+
+- name: smgii1 Grid Produced Power
+  unique_id: 39645bf9-f151-4938-866a-26fac5c79c18
+  unit_of_measurement: W
+  device_class: power
+  state: "{{ [states('sensor.smgii1_grid_active_power') | int(0) * (-1), 0] | max }}"
+
+- name: smgii1 Battery Charge Power
+  unique_id: b2223cc3-7910-4dde-b8ca-3bfe99f58a1c
+  unit_of_measurement: W
+  device_class: power
+  state: "{{ [states('sensor.smgii1_battery_power') | int(0), 0] | max }}"
+
+- name: smgii1 Battery Discharge Power
+  unique_id: c0a08c24-f9a9-4782-bdc2-3854ff857935
+  unit_of_measurement: W
+  device_class: power
+  state: "{{ [states('sensor.smgii1_battery_power') | int(0) * (-1), 0] | max }}"
