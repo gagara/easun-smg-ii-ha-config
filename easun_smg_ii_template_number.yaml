@@ -226,8 +226,8 @@
   unique_id: 64103955-5fb3-48c1-906a-73f642a9c446
   unit_of_measurement: "A"
   state: "{{ states('sensor.smgii1_max_charging_current_setting') }}"
-  min: "{{ [2, states('sensor.smgii1_max_mains_charging_current_setting')|int(2)]|max }}"
-  max: 80
+  min: "{{ [10, states('sensor.smgii1_max_mains_charging_current_setting')|int(10)]|max }}"
+  max: 160
   step: 1
   availability: "{{ not states('sensor.smgii1_max_charging_current_setting') in ['unavailable', 'unknown', 'none'] }}"
   set_value:
@@ -243,7 +243,7 @@
   unit_of_measurement: "A"
   state: "{{ states('sensor.smgii1_max_mains_charging_current_setting') }}"
   min: 2
-  max: "{{ [60, states('sensor.smgii1_max_charging_current_setting')|int(60)]|min }}"
+  max: "{{ [120, states('sensor.smgii1_max_charging_current_setting')|int(120)]|min }}"
   step: 1
   availability: "{{ not states('sensor.smgii1_max_mains_charging_current_setting') in ['unavailable', 'unknown', 'none'] }}"
   set_value:
