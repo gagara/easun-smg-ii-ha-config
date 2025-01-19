@@ -179,7 +179,7 @@
   unit_of_measurement: "V"
   state: "{{ states('sensor.smgii1_bulk_charging_voltage_setting') }}"
   min: "{{ [48, states('sensor.smgii1_floating_charging_voltage_setting')|float(48)]|max }}"
-  max: "{{ [62, states('sensor.smgii1_overvoltage_protection_setting')|float(62)-4]|min }}"
+  max: "{{ [62, states('sensor.smgii1_overvoltage_protection_setting')|float(62)]|min }}"
   step: 0.1
   availability: "{{ not states('sensor.smgii1_bulk_charging_voltage_setting') in ['unavailable', 'unknown', 'none'] }}"
   set_value:
